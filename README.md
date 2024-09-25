@@ -1,1 +1,1 @@
-# emp_mgmt_angular
+# Employee Management using angular. 
