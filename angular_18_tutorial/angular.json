@@ -63,7 +63,8 @@
               "buildTarget": "angular_18_tutorial:build:production"
             },
             "development": {
-              "buildTarget": "angular_18_tutorial:build:development"
+              "buildTarget": "angular_18_tutorial:build:development",
+              "proxyConfig": "src/proxy.config.json"
             }
           },
           "defaultConfiguration": "development"

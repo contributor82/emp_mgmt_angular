@@ -1,4 +1,4 @@
-<p>roles works!</p>
+<!-- <p>roles works!</p>
 <p>{{version}}</p>
 <div class="row">
     <div class="col-3">
@@ -42,5 +42,17 @@
     </div>
     <div class="col-3">
         <button class="btn btn-success" (click)="showMessage('Welcome Dot net')">Dotnet Alert</button>
+    </div>
+</div> -->
+<div class="row">
+    <div class="col-4">
+        <ul>
+            <li *ngFor="let item of roleList">{{item.role}}</li>
+        </ul>
+    </div>
+    <div class="col-4">
+        <select>
+            <option *ngFor="let role of roleList" [value]="role.roleId">{{role.role}}</option>
+        </select>
     </div>
 </div>
