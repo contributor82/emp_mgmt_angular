@@ -16,26 +16,44 @@ export class ClientComponent implements OnInit {
   clientList: Client[] = [];
   clientService = inject(ClientService);
 
+  onEditClient(editClientObj: Client) {
+    this.clientObj = editClientObj;
+  }
+
   onSaveClient() {
     debugger;
-    this.clientService.addUpdateClient(this.clientObj).subscribe((result: APIResponseModel) => {
-      if (result.result) {
-        alert('Client created successfully');
+    this.clientService.addUpdateClient(this.clientObj).subscribe((response: APIResponseModel) => {
+      if (response.result) {
+        alert('Client created/updated successfully');
         this.loadClients();
         this.clientObj = new Client();
       }
       else {
-        alert(result.message);
+        alert(response.message);
       }
-    }
-
-    );
+    });
 
   }
 
+  onDeleteClient(clientId: number) {
+    const isDelete: boolean = confirm('Are you sure to delete this client?');
+    if (isDelete) {
+      this.clientService.deleteClientByClientId(clientId).subscribe((response: APIResponseModel) => {
+        if (response.result) {
+          alert('Client deleted successfully');
+          this.loadClients();
+        }
+        else {
+          alert(response.message);
+        }
+      });
+    }
+  }
+
+
   loadClients() {
-    this.clientService.getAllClients().subscribe((result: APIResponseModel) => {
-      this.clientList = result.data;
+    this.clientService.getAllClients().subscribe((response: APIResponseModel) => {
+      this.clientList = response.data;
     }, error => {
       alert('Clients cannot be loaded');
     });

@@ -62,8 +62,8 @@ export class RolesComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    this.masterService.getRoles().subscribe((result: APIResponseModel) => {
-      this.roleList = result.data;
+    this.masterService.getRoles().subscribe((response: APIResponseModel) => {
+      this.roleList = response.data;
       this.isLoader = false;
     }, error => {
       alert('Roles cannot be loaded');
