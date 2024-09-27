@@ -10,21 +10,24 @@ import { IDesignation } from '../../model/class/interface/designation';
   templateUrl: './designation.component.html',
   styleUrl: './designation.component.css'
 })
-export class DesignationComponent {
+export class DesignationComponent implements OnInit {
 
   designationList: IDesignation[] = [];
   isLoader: boolean = true;
   masterService = inject(MasterService);
 
   ngOnInit(): void {
-    this.masterService.getDesignations().subscribe((result: APIResponseModel) => {
-      this.designationList = result.data;
+    this.getAllDesignation();
+  }
+
+  getAllDesignation() {
+    this.masterService.getAllDesignation().subscribe((response: APIResponseModel) => {
+      this.designationList = response.data;
       this.isLoader = false;
     }, error => {
       alert('Designations cannot be loaded.');
       this.isLoader = false;
     });
-
   }
 
 }

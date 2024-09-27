@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IRole } from '../../model/class/interface/role';
 import { APIResponseModel } from '../../model/class/interface/apiresponsemodel';
 import { CommonModule } from '@angular/common';
+import { MasterService } from '../../services/master.service';
 
 // In binding, there are 3 ways
 // Interpolation such as passing a variable as part of {{}}
@@ -50,7 +51,9 @@ import { CommonModule } from '@angular/common';
 export class RolesComponent implements OnInit {
 
   roleList: IRole[] = [];
-  http = inject(HttpClient);
+  isLoader: boolean = true;
+  masterService = inject(MasterService);
+  //http = inject(HttpClient);
   // Here we are injecting HttpClient dependency
   // Using dependency injection called constructor dependency injection.
 
@@ -69,12 +72,21 @@ export class RolesComponent implements OnInit {
   // Updated angular.json file section serve/development with  "proxyConfig": "src/proxy.config.json"
   // Updated package.json file and added "start:proxy": "ng serve --proxy-config src/proxy.config.json" in serve section
   // So far still getting CORS error causing no response getting captured.
+  // getAllRoles() {
+  //   // To catch the data from api call,  we need to use subscribe method
+  //   this.http.get<APIResponseModel>('/api/ClientStrive/GetAllRoles').subscribe((res: APIResponseModel) => {
+  //     this.roleList = res.data;
+  //   }, error => {
+  //     alert('Roles cannot be loaded.');
+  //   });
+  // }
+
   getAllRoles() {
-    // To catch the data from api call,  we need to use subscribe method
-    this.http.get<APIResponseModel>('https://freeapi.miniprojectideas.com/api/ClientStrive/GetAllRoles').subscribe((res: APIResponseModel) => {
-      this.roleList = res.data;
+    this.masterService.getAllRoles().subscribe((response: APIResponseModel) => {
+      this.roleList = response.data;
+      this.isLoader = false;
     }, error => {
-      alert('Roles cannot be loaded.');
+      alert('Roles cannot be loaded');
     });
   }
 }
