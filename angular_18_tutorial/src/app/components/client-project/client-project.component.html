@@ -20,15 +20,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @for(clientProject of clientProjects; track $index )
+                                <!-- @for(clientProject of clientProjects; track $index ) -->
+                                @for(clientProject of clientProjects(); track $index )
                                 {
                                 <tr>
                                     <td>{{$index+1}}</td>
                                     <td>{{clientProject.empName}}</td>
                                     <td>{{clientProject.projectName}}</td>
                                     <td>{{clientProject.clientName}}</td>
-                                    <td>{{clientProject.startDate}}</td>
-                                    <td>{{clientProject.expectedEndDate}}</td>
+                                    <td>{{clientProject.startDate | date: 'dd-MMM-yyyy' }}</td>
+                                    <td>{{clientProject.expectedEndDate | date: 'dd-MMM-yyyy'}}</td>
                                     <td>
                                         <button class="btn btn-primary"
                                             (click)="onEditClientProject(clientProject)">Edit</button>

@@ -1,8 +1,21 @@
+<p>
+    <b>JSON Pipe Example:</b>
+    {{clientObj | json}}
+</p>
+
+<ul>
+    <b>Async Pipe Example:</b>
+    @for(user of userList$ | async; track $index){
+    <li>{{user.username}}</li>
+    }
+</ul>
+
 <div class="row">
     <div class="col-8">
         <div class="card">
             <div class="card-header bg-success">
-                Client List
+                Client List - {{framework()}} | {{currentDate | date: 'dd-MMM-yyyy'}}
+                <button class="btn btn-danger" (click)="onClickChangeFramework()">Change Framework</button>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -27,7 +40,7 @@
                                 <tr>
                                     <td>{{$index+1}}</td>
                                     <td>{{client.contactPersonName}}</td>
-                                    <td>{{client.companyName}}</td>
+                                    <td>{{client.companyName | uppercase}}</td>
                                     <td>{{client.address}}</td>
                                     <td>{{client.city}}</td>
                                     <td>{{client.state}}</td>

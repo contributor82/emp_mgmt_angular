@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { APIResponseModel } from '../model/class/interface/apiresponsemodel';
 import { ClientProject } from '../model/class/ClientProject';
+import { Constant } from '../constant/Constant';
 
 @Injectable({
   providedIn: 'root'
@@ -12,23 +13,23 @@ export class ClientProjectService {
   constructor(private http: HttpClient) { }
 
   getAllClientProjects(): Observable<APIResponseModel> {
-    return this.http.get<APIResponseModel>('api/ClientStrive/GetAllClientProjects');
+    return this.http.get<APIResponseModel>(Constant.API_METHOD.GET_ALL_CLIENT_PROJECTS);
   }
 
   getProjectsByClientId(clientId: number): Observable<APIResponseModel> {
-    return this.http.get<APIResponseModel>('api/ClientStrive/GetProjectsByClientId?clientId=' + clientId);
+    return this.http.get<APIResponseModel>(Constant.API_METHOD.GET_PROJECTS_BY_CLIENT_ID + clientId);
   }
 
   getProjectsByProjectId(clientProjectId: number): Observable<APIResponseModel> {
-    return this.http.get<APIResponseModel>('api/ClientStrive/GetProjectsByProjectId?projectId=' + clientProjectId);
+    return this.http.get<APIResponseModel>(Constant.API_METHOD.GET_PROJECTS_BY_PROJECT_ID + clientProjectId);
   }
 
   addUpdateClientProject(obj: ClientProject): Observable<APIResponseModel> {
-    return this.http.post<APIResponseModel>('api/ClientStrive/AddUpdateClientProject', obj);
+    return this.http.post<APIResponseModel>(Constant.API_METHOD.ADD_UPDATE_CLIENT_PROJECT, obj);
   }
 
   deleteProjectByProjectId(clientProjectId: number): Observable<APIResponseModel> {
-    return this.http.delete<APIResponseModel>('api/ClientStrive/DeleteProjectByProjectId?projectId=' + clientProjectId);
+    return this.http.delete<APIResponseModel>(Constant.API_METHOD.DELETE_PROJECT_BY_PROJECT_ID + clientProjectId);
   }
 
 }
