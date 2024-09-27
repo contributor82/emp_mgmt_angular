@@ -25,7 +25,7 @@ export class ClientComponent implements OnInit {
     this.clientService.addUpdateClient(this.clientObj).subscribe((response: APIResponseModel) => {
       if (response.result) {
         alert('Client created/updated successfully');
-        this.loadClients();
+        this.getAllClients();
         this.clientObj = new Client();
       }
       else {
@@ -41,7 +41,7 @@ export class ClientComponent implements OnInit {
       this.clientService.deleteClientByClientId(clientId).subscribe((response: APIResponseModel) => {
         if (response.result) {
           alert('Client deleted successfully');
-          this.loadClients();
+          this.getAllClients();
         }
         else {
           alert(response.message);
@@ -50,8 +50,11 @@ export class ClientComponent implements OnInit {
     }
   }
 
+  onReset() {
+    this.clientObj = new Client();
+  }
 
-  loadClients() {
+  getAllClients() {
     this.clientService.getAllClients().subscribe((response: APIResponseModel) => {
       this.clientList = response.data;
     }, error => {
@@ -60,6 +63,6 @@ export class ClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadClients();
+    this.getAllClients();
   }
 }

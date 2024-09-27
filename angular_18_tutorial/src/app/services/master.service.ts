@@ -13,11 +13,11 @@ export class MasterService {
 
   constructor(private http: HttpClient) { }
 
-  getRoles(): Observable<APIResponseModel> {
+  getAllRoles(): Observable<APIResponseModel> {
     return this.http.get<APIResponseModel>('/api/ClientStrive/GetAllRoles');
   }
 
-  getDesignations(): Observable<APIResponseModel> {
+  getAllDesignation(): Observable<APIResponseModel> {
     return this.http.get<APIResponseModel>('/api/ClientStrive/GetAllDesignation');
   }
 

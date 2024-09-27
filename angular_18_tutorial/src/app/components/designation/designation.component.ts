@@ -17,14 +17,17 @@ export class DesignationComponent implements OnInit {
   masterService = inject(MasterService);
 
   ngOnInit(): void {
-    this.masterService.getDesignations().subscribe((response: APIResponseModel) => {
+    this.getAllDesignation();
+  }
+
+  getAllDesignation() {
+    this.masterService.getAllDesignation().subscribe((response: APIResponseModel) => {
       this.designationList = response.data;
       this.isLoader = false;
     }, error => {
       alert('Designations cannot be loaded.');
       this.isLoader = false;
     });
-
   }
 
 }

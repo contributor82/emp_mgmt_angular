@@ -62,12 +62,7 @@ export class RolesComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    this.masterService.getRoles().subscribe((response: APIResponseModel) => {
-      this.roleList = response.data;
-      this.isLoader = false;
-    }, error => {
-      alert('Roles cannot be loaded');
-    });
+    this.getAllRoles();
   }
 
   // API Call
@@ -85,4 +80,13 @@ export class RolesComponent implements OnInit {
   //     alert('Roles cannot be loaded.');
   //   });
   // }
+
+  getAllRoles() {
+    this.masterService.getAllRoles().subscribe((response: APIResponseModel) => {
+      this.roleList = response.data;
+      this.isLoader = false;
+    }, error => {
+      alert('Roles cannot be loaded');
+    });
+  }
 }
