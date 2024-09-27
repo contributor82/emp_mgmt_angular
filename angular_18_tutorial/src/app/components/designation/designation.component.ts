@@ -10,7 +10,7 @@ import { IDesignation } from '../../model/class/interface/designation';
   templateUrl: './designation.component.html',
   styleUrl: './designation.component.css'
 })
-export class DesignationComponent {
+export class DesignationComponent implements OnInit {
 
   designationList: IDesignation[] = [];
   isLoader: boolean = true;

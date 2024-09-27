@@ -44,7 +44,7 @@
         <button class="btn btn-success" (click)="showMessage('Welcome Dot net')">Dotnet Alert</button>
     </div>
 </div> -->
-<div class="row">
+<!-- <div class="row">
     <div class="col-4">
         <ul>
             <li *ngFor="let item of roleList">{{item.role}}</li>
@@ -55,4 +55,29 @@
             <option *ngFor="let role of roleList" [value]="role.roleId">{{role.role}}</option>
         </select>
     </div>
+</div> -->
+@if (isLoader== true){
+<div class="col-12 text-center">
+    <div class="spinner-border text-primary"></div>
 </div>
+}
+@else {
+<div class="row">
+    <div class="col-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Sr No.</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let role of roleList; let srno=index">
+                    <td>{{srno + 1}}</td>
+                    <td>{{role.role}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+}

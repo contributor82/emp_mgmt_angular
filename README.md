@@ -32,3 +32,7 @@ Using Routing
 Define Routes in app.routes
 Add  <router-outlet></router-outlet> in app.Component HTML
 Import RouterLink, RouterLinkActive in App component
+
+Using environment constants
+'ng g environmments' to generate environment folder structure.
+It will angular.json file and we can add constants in environment.ts file.
