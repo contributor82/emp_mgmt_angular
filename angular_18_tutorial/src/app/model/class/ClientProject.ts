@@ -1,6 +1,9 @@
 export class ClientProject {
     clientProjectId: number;
+    empId: number;
     empName: string;
+    empEmailId: string;
+    empDesignation: string;
     projectName: string;
     startDate: Date;
     expectedEndDate: Date;
@@ -17,7 +20,10 @@ export class ClientProject {
 
     constructor() {
         this.clientProjectId = 0;
+        this.empId = 0;
         this.empName = '';
+        this.empEmailId = '';
+        this.empDesignation = '';
         this.projectName = '';
         this.startDate = new Date();
         this.expectedEndDate = new Date();

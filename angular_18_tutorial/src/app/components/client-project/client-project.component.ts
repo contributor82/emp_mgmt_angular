@@ -1,5 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { formatDate } from '@angular/common';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { DatePipe, formatDate } from '@angular/common';
 import { ClientProject } from '../../model/class/ClientProject';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { APIResponseModel } from '../../model/class/interface/apiresponsemodel';
@@ -8,19 +8,23 @@ import { IEmployee } from '../../model/class/interface/employee';
 import { ClientService } from '../../services/client.service';
 import { Client } from '../../model/class/Client';
 import { ClientProjectService } from '../../services/client-project.service';
+import { AlertComponent } from '../reusableComponent/alert/alert.component';
 
 // This is Reactive form module and not normal form template.
 
 @Component({
   selector: 'app-client-project',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, DatePipe, AlertComponent],
   templateUrl: './client-project.component.html',
   styleUrl: './client-project.component.css'
 })
 export class ClientProjectComponent implements OnInit {
   // clientProjectObj: ClientProject = new ClientProject();
-  clientProjects: ClientProject[] = [];
+  //clientProjects: ClientProject[] = [];
+
+  // Creating Client Projects list using signnal
+  clientProjects = signal<ClientProject[]>([]);
 
   employeeService = inject(EmployeeService);
   employeeList: IEmployee[] = [];
@@ -129,7 +133,8 @@ export class ClientProjectComponent implements OnInit {
 
   getAllClientProjects() {
     this.clientProjectService.getAllClientProjects().subscribe((response: APIResponseModel) => {
-      this.clientProjects = response.data;
+      //this.clientProjects = response.data; // Regular object array assignment
+      this.clientProjects.set(response.data);
     }, error => {
       alert('Client projects cannot be loaded');
     });

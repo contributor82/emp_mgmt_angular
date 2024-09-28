@@ -1,8 +1,21 @@
+<p>
+    <b>JSON Pipe Example:</b>
+    {{clientObj | json}}
+</p>
+
+<ul>
+    <b>Async Pipe Example:</b>
+    @for(user of userList$ | async; track $index){
+    <li>{{user.username}}</li>
+    }
+</ul>
+<app-alert [alertType]="'Success!'" [alertMessage]="'Hello, Client page'"></app-alert>
 <div class="row">
     <div class="col-8">
         <div class="card">
             <div class="card-header bg-success">
-                Client List
+                Client List - {{framework()}} | {{currentDate | date: 'dd-MMM-yyyy'}}
+                <button class="btn btn-danger" (click)="onClickChangeFramework()">Change Framework</button>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -27,7 +40,7 @@
                                 <tr>
                                     <td>{{$index+1}}</td>
                                     <td>{{client.contactPersonName}}</td>
-                                    <td>{{client.companyName}}</td>
+                                    <td>{{client.companyName | uppercase}}</td>
                                     <td>{{client.address}}</td>
                                     <td>{{client.city}}</td>
                                     <td>{{client.state}}</td>
@@ -113,7 +126,12 @@
                     </div>
                     <div class="row pt-2">
                         <div class="col-6 text-center">
-                            <button class="btn btn-secondary" (click)="onReset()">Reset</button>
+                            <!-- <button class="btn btn-secondary" (click)="onReset()">Reset</button> -->
+                            <!--Using Reusable Button component -->
+                            <!-- To accept child component data sent to onBtnClicked event, use onReset($event)-->
+
+                            <app-reusable-button [btnClass]="'btn btn-success'" [btnText]="'Reset'"
+                                (onBtnClicked)="onReset()"></app-reusable-button>
                         </div>
                         <div class="col-6 text-center">
                             <button class="btn btn-success" [disabled]="!clientForm.valid" (click)="onSaveClient()">
