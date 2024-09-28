@@ -77,3 +77,16 @@ To pass the data from child component to parent component, create properties suc
 @Output outputData: string = '';
 
 # Creating login & layout since it is a admin app
+User can login through login page by entering credentials and then access respective pages.
+layout is where user will be loggged out.
+but still we are able to access pages directly without entering credentials through login page
+http://localhost:4200/
+hence creating a guard to restrict such access
+
+# Using Guard
+'ng g g auth' Creating auth guard.
+4 types of guards - CanActivate, CanActivateChild,CanDeactivate, CanMatch
+Guard helps to authorize entry to access pages after entering valid credentials to login.
+Acess localstorage to validate in guard and then using router redirect to login page to avoid
+unauthorized access to a page.
+Configure guard using CanActivate in app.router.ts to apply for all pages (components)
