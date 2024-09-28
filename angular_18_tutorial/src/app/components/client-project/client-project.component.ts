@@ -8,13 +8,14 @@ import { IEmployee } from '../../model/class/interface/employee';
 import { ClientService } from '../../services/client.service';
 import { Client } from '../../model/class/Client';
 import { ClientProjectService } from '../../services/client-project.service';
+import { AlertComponent } from '../reusableComponent/alert/alert.component';
 
 // This is Reactive form module and not normal form template.
 
 @Component({
   selector: 'app-client-project',
   standalone: true,
-  imports: [ReactiveFormsModule, DatePipe],
+  imports: [ReactiveFormsModule, DatePipe, AlertComponent],
   templateUrl: './client-project.component.html',
   styleUrl: './client-project.component.css'
 })
