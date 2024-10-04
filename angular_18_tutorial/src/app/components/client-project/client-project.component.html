@@ -113,7 +113,7 @@
                             <select formControlName="clientId" class="form-control">
                                 @for(client of clientList; track $index)
                                 {
-                                <option [value]="client.clientId">{{client.companyName}}</option>
+                                <option [value]="client.clientId" clientProjectForm.controls['clientId'].value == client.clientId ? 'selected': '' >{{client.companyName}}</option>
                                 }
                             </select>
                         </div>
@@ -122,7 +122,7 @@
                             <select formControlName="leadByEmpId" class="form-control">
                                 @for(employee of employeeList; track $index)
                                 {
-                                <option [value]="employee.empId">{{employee.empName}} - {{ employee.empCode}}</option>
+                                <option [value]="employee.empId" clientProjectForm.controls['leadByEmpId'].value == employee.empId ? 'selected' : ''   >{{employee.empName}} - {{ employee.empCode}}</option>
                                 }
                             </select>
                         </div>
